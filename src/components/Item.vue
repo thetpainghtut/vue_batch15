@@ -1,8 +1,26 @@
 <template>
   <div>
-    <h2 class="text-success">Show Items</h2>
+    <h1 class="text-success">Item List</h1>
 
-    <b-table striped hover :info="info"></b-table>
+    <b-container>
+      <b-table striped hover :items="info" :fields="fields">
+
+        <!-- A virtual column -->
+        <template v-slot:cell(no)="data">
+          {{ data.index + 1 }}
+        </template>
+
+        <template v-slot:cell(photo)="data">
+          <img :src="data.item.photo" alt="" width="50" height="50">
+        </template>
+
+        <template v-slot:cell(actions)="data">
+          <b-button variant="warning" :href="data.item.id" class="mx-2">Edit</b-button>
+          <b-button variant="danger" :href="data.item.id" class="mx-2">Delete</b-button>
+        </template>
+        
+      </b-table>
+    </b-container>
   </div>
 </template>
 
@@ -12,7 +30,8 @@
   export default{
     data () {
       return {
-        info: []
+        info: [],
+        fields: ['no', 'name', 'photo', 'perprice', 'actions',]
       }
     },
     mounted () {
@@ -21,10 +40,9 @@
         .then(response => {
           const myObj = response.data
           // const myArr = Object.keys(myObj).map(i => myObj[i])
-          const myArr = Object.entries(myObj);
-          console.log(typeof myArr);
-          this.info = myArr;
-
+          // const myArr = Object.entries(myObj);
+          console.log(myObj);
+          this.info = myObj;
         })
     }
   }

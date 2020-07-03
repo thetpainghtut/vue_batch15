@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/mylogo.png" class="img-fluid w-25">
+    <img alt="Vue logo" src="./assets/mylogo.png" class="img-fluid" width="200">
 
     <div class="my-3">
       <router-link to="/testing" class="btn btn-primary mx-3">Go to Testing</router-link>
