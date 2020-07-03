@@ -1,0 +1,34 @@
+entry point 
+  -> src/main.js
+  -> create new vue instance (object)
+  -> render #app in App.vue
+          
+main component 
+  -> src/App.vue
+  -> Template, Script, Style
+
+child component 
+  -> src/components/HelloWorld.vue
+  -> accept value from parent component
+    -> props
+
+Install axios (use to access api)
+=> sudo npm install --save axios
+
+Install bootstrap-vue (use for ui)
+=> sudo npm install --save bootstrap-vue
+
+Install vue route (for routes in vue)
+=> sudo npm install --save vue-router
+
+Install vuex (for vue auth)
+=> npm install --save vuex
+
+Note: for Error
+---------------
+    "rules": {
+      "no-mixed-spaces-and-tabs": 0
+    }
+
+
+
