@@ -15,8 +15,8 @@
         </template>
 
         <template v-slot:cell(actions)="data">
-          <b-button variant="warning" :href="data.item.id" class="mx-2">Edit</b-button>
-          <b-button variant="danger" :href="data.item.id" class="mx-2">Delete</b-button>
+          <b-button variant="warning" :href="data.item.id.toString()" class="mx-2">Edit</b-button>
+          <b-button variant="danger" :href="data.item.id.toString()" class="mx-2">Delete</b-button>
         </template>
         
       </b-table>
@@ -25,26 +25,32 @@
 </template>
 
 <script type="text/javascript">
-  const axios = require('axios');
-
   export default{
     data () {
       return {
+        token: localStorage.getItem('token'),
         info: [],
         fields: ['no', 'name', 'photo', 'perprice', 'actions',]
       }
     },
     mounted () {
-      axios
-        .get('http://ecommerce.thetpainghtut.com/api/items')
+      this.getItems();
+    },
+    methods:{
+      getItems(){
+        this.$http.get('http://ecommerce.thetpainghtut.com/api/items',{
+          headers: {
+            'Authorization': `Bearer ${this.token}`
+          }
+        })
         .then(response => {
           const myObj = response.data
-          // const myArr = Object.keys(myObj).map(i => myObj[i])
-          // const myArr = Object.entries(myObj);
-          console.log(myObj);
           this.info = myObj;
         })
+        .catch(err=> console.log(err));
+      }
     }
+
   }
 </script>
 
